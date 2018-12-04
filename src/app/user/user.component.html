@@ -1,0 +1,7 @@
+<div class="card" appHighlight (click)="toggle()">
+  <img class="card-img-top" src="https://via.placeholder.com/500?text=No+image+provided." alt="Card image cap">
+  <div class="card-body">
+    <h5 class="card-title">{{ name }}</h5>
+    <p class="card-text" *ngIf="!collapsed">{{ description }}</p>
+  </div>
+</div>

@@ -1,0 +1,18 @@
+.card {
+  $font-size: 24px;
+
+  .card-title {
+    font-size: $font-size;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+
+  .card-text {
+    font-size: $font-size / 1.5;
+  }
+}
+
+.card:hover {
+  cursor: pointer;
+  transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+}
