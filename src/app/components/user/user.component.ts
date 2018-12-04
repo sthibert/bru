@@ -1,4 +1,5 @@
 import {Component, Input, OnDestroy, OnInit} from '@angular/core';
+import {User} from '../../models/user';
 
 @Component({
     selector: 'app-user',
@@ -7,9 +8,7 @@ import {Component, Input, OnDestroy, OnInit} from '@angular/core';
 })
 export class UserComponent implements OnInit, OnDestroy {
 
-    @Input() name = '';
-    @Input() description = '';
-    @Input() collapsed = false;
+    @Input() user: User;
 
     constructor() {
     }
@@ -18,10 +17,6 @@ export class UserComponent implements OnInit, OnDestroy {
     }
 
     ngOnDestroy(): void {
-    }
-
-    toggle() {
-        this.collapsed = !this.collapsed;
     }
 
 }

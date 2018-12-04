@@ -1,6 +1,11 @@
 .card {
   $font-size: 24px;
 
+  a {
+    text-decoration: none !important;
+    color: inherit !important;
+  }
+
   .card-title {
     font-size: $font-size;
     font-weight: bold;
@@ -10,9 +15,4 @@
   .card-text {
     font-size: $font-size / 1.5;
   }
-}
-
-.card:hover {
-  cursor: pointer;
-  transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
 }

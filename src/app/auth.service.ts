@@ -1,29 +1,37 @@
 import {Injectable} from '@angular/core';
+import {User} from './models/user';
+import {HttpClient} from '@angular/common/http';
 
 @Injectable({
     providedIn: 'root'
 })
 export class AuthService {
 
-    private static key = 'bru-user';
+    private key = 'bru-user';
 
-    constructor() {
+    constructor(private http: HttpClient) {
     }
 
-    public static login(email: string, password: string) {
-        window.localStorage.setItem(this.key, JSON.stringify({email, password}));
+    public login(username: string, password: string) {
+        window.localStorage.setItem(this.key, JSON.stringify({username, password}));
+        // return this.http.post(environment.api + '/login', {username, password}).toPromise();
     }
 
-    public static getLoggedInUser() {
+    public logout() {
+        window.localStorage.removeItem(this.key);
+    }
+
+    public isLoggedIn(): boolean {
+        const user = window.localStorage.getItem(this.key);
+        return !!user;
+    }
+
+    public getLoggedInUser(): User {
         const user = window.localStorage.getItem(this.key);
         if (user) {
             return JSON.parse(user);
-        } else {
-            return {
-                email: '',
-                password: ''
-            };
         }
+        return null;
     }
 
 }

@@ -1,0 +1,11 @@
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <p *ngIf="loading">Loading... Please wait.</p>
+      <ng-container *ngIf="!loading">
+        <app-article [article]="article"></app-article>
+        <a class="btn btn-outline-dark btn-block mt-2" [routerLink]="['/articles', article.id, 'edit']">Edit the article</a>
+      </ng-container>
+    </div>
+  </div>
+</div>

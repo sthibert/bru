@@ -1,0 +1,20 @@
+<div class="row mb-5">
+  <div class="col-12">
+    <div class="px-3 py-3 pb-5 mx-auto text-center">
+      <h1 class="display-4">List of articles</h1>
+    </div>
+  </div>
+  <div class="col-12" *ngIf="loading">
+    <p class="text-center">Loading... Please wait.</p>
+  </div>
+  <ng-container *ngIf="!loading">
+    <div class="col-4">
+      <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+        <a class="nav-link" *ngFor="let article of articles"  [routerLink]="['/articles', article.id]" routerLinkActive="active">{{ article.title }}</a>
+      </div>
+    </div>
+    <div class="col-8">
+      <router-outlet></router-outlet>
+    </div>
+  </ng-container>
+</div>

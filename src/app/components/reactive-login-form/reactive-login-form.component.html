@@ -1,0 +1,21 @@
+<div class="mt-4 mb-5">
+  <form [formGroup]="reactiveLoginForm" (submit)="reactiveLogin()" novalidate>
+    <div class="form-group">
+      <label for="reactive-username">Username</label>
+      <input type="text" class="form-control" id="reactive-username" placeholder="Enter username" required formControlName="username">
+      <div class="text-danger"
+           *ngIf="!reactiveLoginForm.get('username').valid && reactiveLoginForm.get('username').touched">
+        The email is not valid.
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="reactive-password">Password</label>
+      <input type="password" class="form-control" id="reactive-password" placeholder="Password" required formControlName="password">
+      <div class="text-danger"
+           *ngIf="!reactiveLoginForm.get('password').valid && reactiveLoginForm.get('password').touched">
+        The password is not valid.
+      </div>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+</div>

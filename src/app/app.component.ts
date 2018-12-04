@@ -1,5 +1,6 @@
 import {Component} from '@angular/core';
-import {User} from './models/user';
+import {AuthService} from './auth.service';
+import {Router} from '@angular/router';
 
 @Component({
     selector: 'app-root',
@@ -8,11 +9,20 @@ import {User} from './models/user';
 })
 export class AppComponent {
 
-    users = [
-        new User('Simon', 'age: 26', true),
-        new User('Jean', 'age: 47', false),
-        new User('Julie', 'age: 22', false),
-        new User('Nicole', 'age: 89', true)
-    ];
+    constructor(private router: Router, private authService: AuthService) {
+    }
+
+    isLoggedIn() {
+        return this.authService.isLoggedIn();
+    }
+
+    getLoggedInUser() {
+        return this.authService.getLoggedInUser();
+    }
+
+    logout() {
+        this.authService.logout();
+        this.router.navigate(['/home']);
+    }
 
 }

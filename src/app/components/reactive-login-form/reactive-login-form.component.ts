@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup} from '@angular/forms';
-import {AuthService} from '../auth.service';
+import {AuthService} from '../../auth.service';
+import {Router} from '@angular/router';
 
 @Component({
     selector: 'app-reactive-login-form',
@@ -11,23 +12,26 @@ export class ReactiveLoginFormComponent implements OnInit {
 
     reactiveLoginForm: FormGroup;
 
-    constructor() {
+    constructor(private router: Router, private authService: AuthService) {
         this.reactiveLoginForm = new FormGroup({
-            email: new FormControl(''),
+            username: new FormControl(''),
             password: new FormControl(''),
         });
     }
 
     ngOnInit(): void {
-        const user = AuthService.getLoggedInUser();
-        this.reactiveLoginForm.patchValue({email: user.email});
+        const user = this.authService.getLoggedInUser();
+        if (user) {
+            this.reactiveLoginForm.patchValue({username: user.username});
+        }
     }
 
     reactiveLogin() {
-        const email = this.reactiveLoginForm.get('email');
+        const username = this.reactiveLoginForm.get('username');
         const password = this.reactiveLoginForm.get('password');
-        if (email.valid && password.valid) {
-            AuthService.login(email.value, password.value);
+        if (username.valid && password.valid) {
+            this.authService.login(username.value, password.value);
+            this.router.navigate(['/profile']);
         }
     }
 
